@@ -1,0 +1,1 @@
+/* Chart Area Demo (placeholder) */

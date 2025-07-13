@@ -1,0 +1,9 @@
+{
+  "name": "socialblade",
+  "automationType": "playwright",
+  "baseUrl": "https://socialblade.com/youtube/user/",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": [],
+  "jsonKeysForImageUrls": ["profilePicUrl"]
+}

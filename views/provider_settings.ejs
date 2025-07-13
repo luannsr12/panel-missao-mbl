@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+<body class="dashboard-layout">
+    <%- include('partials/sidebar') %>
+    <div class="main-content">
+
+            <h1 class="h3 mb-4 text-gray-800">Configurações de Provedores</h1>
+
+            <div class="form-card mb-4">
+                <h3 class="mb-4">Definir Provedor Padrão por Plataforma</h3>
+                <form action="/settings/providers" method="POST">
+                    <div class="form-group mb-3">
+                        <label for="platformSelect" class="form-label">Plataforma</label>
+                        <select class="form-control" id="platformSelect" name="platform" required>
+                            <option value="">Selecione a Plataforma</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="twitter">Twitter/X</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="kwai">Kwai</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="reddit">Reddit</option>
+                            <option value="twitch">Twitch</option>
+                            <option value="wechat">WeChat</option>
+                            <option value="spotify">Spotify</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="providerSelect" class="form-label">Provedor</label>
+                        <select class="form-control" id="providerSelect" name="provider_name" required>
+                            <option value="">Selecione o Provedor</option>
+                            <% for (const providerName in availableProviders) { %>
+                                <option value="<%= providerName %>"><%= availableProviders[providerName] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar Configuração</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Provedores Padrão Atuais</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Plataforma</th>
+                                    <th>Provedor Padrão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (currentSettings.length > 0) { %>
+                                    <% currentSettings.forEach(setting => { %>
+                                        <tr>
+                                            <td><%= setting.platform %></td>
+                                            <td><%= setting.provider_name %></td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="2">Nenhuma configuração de provedor padrão definida.</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+<%- include('partials/footer') %>

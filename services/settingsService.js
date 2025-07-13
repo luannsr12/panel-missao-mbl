@@ -1,0 +1,14 @@
+const db = require('../database');
+
+const settingsService = {
+    async getHeadlessSetting() {
+        const setting = await db.getAsync("SELECT value FROM settings WHERE setting_key = 'headless'");
+        return setting?.value === 'true';
+    },
+
+    async updateHeadlessSetting(headless) {
+        return await db.runAsync("UPDATE settings SET value = ? WHERE setting_key = 'headless'", [headless ? 'true' : 'false']);
+    }
+};
+
+module.exports = settingsService;

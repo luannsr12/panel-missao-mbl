@@ -1,0 +1,9 @@
+{
+  "name": "inflact",
+  "automationType": "playwright",
+  "baseUrl": "https://inflact.com/pt/instagram-viewer/?profile=",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": ["followers", "posts", "engagement", "biography", "full_name"],
+  "jsonKeysForImageUrls": ["profile_pic_url_hd", "profile_pic_url", "profile_picture_url_hd", "display_url"]
+}

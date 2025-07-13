@@ -1,0 +1,133 @@
+<%- include('partials/header') %>
+
+    <body class="dashboard-layout">
+        <%- include('partials/sidebar') %>
+            <div class="main-content">
+
+
+                <h1 class="h3 mb-4 text-gray-800">Gerenciamento de Perfis</h1>
+
+                <div class="form-card">
+                    <h3 class="mb-4">Adicionar Novo Perfil</h3>
+
+                    <!-- Avatar do usuário central -->
+                    <div class="user-avatar-large mb-4">
+                        <img src="/images/default-avatar.png" alt="User Avatar">
+                    </div>
+
+                    <!-- Nome do usuário e arroba (exemplo, ajuste conforme seus dados) -->
+                    <div class="user-details-header mb-4">
+                        <h4>Nome do Usuário</h4>
+                        <p class="username">@arroba_do_usuario</p>
+                    </div>
+
+                    <!-- Estatísticas (exemplo, ajuste conforme seus dados) -->
+                    <div class="user-stats-small mb-5">
+                        <div class="stat-item-small"><i class="fas fa-users"></i> Seguidores: <span>0</span></div>
+                        <div class="stat-item-small"><i class="fas fa-user-friends"></i> Seguindo: <span>0</span></div>
+                        <div class="stat-item-small"><i class="fas fa-image"></i> Posts: <span>0</span></div>
+                    </div>
+
+                    <form action="/profiles" method="POST">
+                        <% if (isAdmin) { %>
+                            <div class="form-group mb-3">
+                                <label for="userSelect" class="form-label">Vincular ao Usuário</label>
+                                <select class="form-control" id="userSelect" name="user_id_owner" required>
+                                    <% if (users.length> 0) { %>
+                                        <% users.forEach(user=> { %>
+                                            <option value="<%= user.id %>">
+                                                <%= user.username %>
+                                            </option>
+                                            <% }) %>
+                                                <% } else { %>
+                                                    <option disabled selected>Não há usuários cadastrados</option>
+                                                    <% } %>
+                                </select>
+                            </div>
+
+                            <% } %>
+                                <div class="form-group mb-3">
+                                    <label for="platformSelect" class="form-label">Selecione a Rede Social</label>
+                                    <select class="form-control" name="platform" id="platformSelect" required>
+                                        <option value="">Selecione a Rede Social</option>
+                                        <option value="instagram">Instagram</option>
+                                        <option value="twitter">Twitter/X</option>
+                                        <option value="youtube">YouTube</option>
+                                        <option value="kwai">Kwai</option>
+                                        <option value="tiktok">TikTok</option>
+                                        <option value="linkedin">LinkedIn</option>
+                                        <option value="facebook">Facebook</option>
+                                        <option value="reddit">Reddit</option>
+                                        <option value="twitch">Twitch</option>
+                                        <option value="wechat">WeChat</option>
+                                        <option value="spotify">Spotify</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="urlInput" class="form-label">URL do perfil</label>
+                                    <input type="text" class="form-control" id="urlInput"
+                                        placeholder="URL do perfil (ex: https://www.instagram.com/username)" name="url"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Adicionar Perfil</button>
+                    </form>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">Perfis Cadastrados</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Usuário</th>
+                                        <th>Plataforma</th>
+                                        <% if (locals.isAdmin) { %>
+                                            <th>Proprietário</th>
+                                            <% } %>
+                                                <th>Status</th>
+                                                <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% profiles.forEach(profile=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= profile.id %>
+                                            </td>
+                                            <td>@<%= profile.username %>
+                                            </td>
+                                            <td>
+                                                <%= profile.platform %>
+                                            </td>
+                                            <% if (locals.isAdmin) { %>
+                                                <td>
+                                                    <%= profile.owner_username %>
+                                                </td>
+                                                <% } %>
+                                                    <td><span class="badge bg-info">
+                                                            <%= profile.status %>
+                                                        </span></td>
+                                                    <td>
+                                                        <form action="/profiles/analyze/<%= profile.id %>" method="POST"
+                                                            class="d-inline">
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-success">Analisar</button>
+                                                        </form>
+                                                        <form action="/profiles/delete/<%= profile.id %>" method="POST"
+                                                            class="d-inline">
+                                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                                onclick="return confirm('Tem certeza que deseja excluir este perfil?');">Excluir</button>
+                                                        </form>
+                                                    </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('partials/footer') %>

@@ -1,0 +1,129 @@
+:root {
+    --primary-yellow: #FBC02D;
+    --primary-yellow-dark: #C49000;
+    --black: #000;
+    --white: #FFF;
+    --dark-gray: #222;
+    --light-gray-bg: #FAFAFA;
+    --divider: #ECECEC;
+    --focus: #1A73E8;
+    --danger: #E53935;
+    --success: #43A047;
+    --shadow: 0 2px 16px 0 rgba(40, 40, 40, 0.07), 0 1.5px 6px 0 rgba(0, 0, 0, 0.05);
+    --radius: 14px;
+    --font-main: 'Roboto', 'Segoe UI', Arial, sans-serif;
+}
+
+/* === RESET === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.alert {
+    width: 100%;
+    min-height: 50px;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+
+.alert.alert-danger {
+    background-color: #ff00004f;
+    border-left: 5px solid red;
+}
+
+.alert.alert-success {
+    background-color: #51ff004f;
+    border-left: 5px solid rgb(8, 163, 2);
+}
+
+#toast-container>.toast {
+    background-color: #fff !important;
+    color: #222 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.13) !important;
+    border: none !important;
+    font-size: 1.08rem;
+}
+
+#toast-container>.toast-error {
+    border-left: 5px solid red !important;
+}
+
+#toast-container>.toast-success {
+    border-left: 5px solid rgb(8, 163, 2)!important;
+}
+
+#toast-container .toast-progress {
+    height: 5px;
+}
+
+#toast-container>.toast-error .toast-progress {
+   background-color: red;
+}
+
+#toast-container>.toast-success .toast-progress {
+    background-color: rgb(8, 163, 2);
+}
+
+#toast-container .toast-close-button {
+    color: #888 !important;
+    opacity: 1 !important;
+    font-size: 1.15em !important;
+}
+
+#toast-container>.toast .toast-message {
+    font-weight: 500;
+}
+
+#toast-container>.toast .toast-title {
+    font-weight: 700;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.spinner {
+    border: 6px solid rgba(255, 255, 255, 0.18);
+    border-top: 6px solid #FBC02D;
+    /* Amarelo */
+    border-radius: 50%;
+    width: 68px;
+    height: 68px;
+    animation: spin 1s linear infinite;
+    background: transparent;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "hypeauditor",
+  "automationType": "none",
+  "baseUrl": "https://pdata.hypeauditor.com/",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": ["followers_count", "is_private", "is_verified", "full_name"],
+  "jsonKeysForImageUrls": ["avatar_url"]
+}

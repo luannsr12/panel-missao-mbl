@@ -1,0 +1,47 @@
+<nav class="sidebar">
+    <div class="logo">
+        <!-- Ícone de onça pintada (substitua por sua imagem ou ícone SVG) -->
+        <img src="/images/logo-missao-black.png" alt="Jaguar Icon">
+    </div>
+
+    <ul class="nav-list">
+        <li class="nav-item <%= currentPage === 'dashboard' ? 'active' : '' %>">
+            <a class="nav-link" href="/dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item <%= currentPage === 'profiles' ? 'active' : '' %>">
+            <a class="nav-link" href="/profiles">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Redes Sociais</span>
+            </a>
+        </li>
+        <% if (locals.isAdmin) { %>
+        <li class="nav-item <%= currentPage === 'users' ? 'active' : '' %>">
+            <a class="nav-link" href="/users">
+                <i class="fas fa-fw fa-user-cog"></i>
+                <span>Gerenciar Usuários</span>
+            </a>
+        </li>
+        <li class="nav-item <%= currentPage === 'providers' ? 'active' : '' %>">
+            <a class="nav-link" href="/settings/providers">
+                <i class="fas fa-fw fa-cogs"></i>
+                <span>Provedores</span>
+            </a>
+        </li>
+        <% } %>
+        <li class="nav-item <%= currentPage === 'settings' ? 'active' : '' %>">
+            <a class="nav-link" href="/settings">
+                <i class="fas fa-fw fa-sliders-h"></i>
+                <span>Configurações</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>

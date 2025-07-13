@@ -1,0 +1,129 @@
+
+.logo-login {
+    position: absolute;
+    width: 200px;
+    top: 10px;
+    left: 10px;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-yellow);
+    font-family: 'Segoe UI', sans-serif;
+
+}
+
+.login-card {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group .input-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 12px 14px 40px;
+    border-radius: 8px;
+    border: none;
+    background: #1a1a1a;
+    color: var(--white);
+    font-size: 15px;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #bbb;
+}
+
+.login-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: var(--primary-yellow);
+    color: var(--black);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #3da684;
+}
+
+.login-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #ddd;
+}
+
+.login-footer p {
+    margin: 0;
+}
+
+.footer-text {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color 0.2s;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.footer-text a:hover {
+    color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        padding: 30px 20px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .logo-login {
+        width: 120px;
+    }
+
+    .login-title {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "livecounts",
+  "automationType": "playwright",
+  "baseUrl": "https://livecounts.io/youtube-live-subscriber-count/",
+  "exitOnCompletion": false,
+  "runInBackground": false,
+  "jsonKeywordsForProfileData": [],
+  "jsonKeysForImageUrls": []
+}

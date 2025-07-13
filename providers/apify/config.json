@@ -1,0 +1,87 @@
+{
+  "name": "apify",
+  "automationType": "api",
+  "baseUrl": "https://api.apify.com/v2/acts/",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": [
+    "legacy",
+    "followerCount",
+    "followersCount",
+    "web_profile_info",
+    "biography",
+    "followers",
+    "following",
+    "biography_with_entities",
+    "is_blue_verified",
+    "statuses_count"
+  ],
+  "jsonKeysForImageUrls": [
+    "avatar.image_url",
+    "legacy.profile_banner_url",
+    "avatarLarger",
+    "hd_profile_pic_url_info",
+    "profile_pic_url",
+    "profile_pic_url_hd",
+    "display_url",
+    "thumbnail_src",
+    "profilePicUrl"
+  ],
+  "apiKeyEnvVar": "APIFY_API_TOKEN",
+  "actorIds": {
+    "instagram": "apify~instagram-profile-scraper",
+    "x": "kaitoeasyapi~premium-twitter-user-scraper-pay-per-result",
+    "twitter": "kaitoeasyapi~premium-twitter-user-scraper-pay-per-result",
+    "tiktok": "xtdata~tiktok-user-information-scraper",
+    "youtube": "datasaurus~youtube-channels",
+    "kwai": "sauermar~kwai-profile-scraper",
+    "facebook": "apify~facebook-scraper",
+    "linkedin": "apify~linkedin-profile-scraper",
+    "spotify": "lhotanok~spotify-scraper",
+    "twitch": "ivansablotsky~twitch-scraper",
+    "wechat": "zhenyuan~wechat-scraper",
+    "reddit": "apify~reddit-scraper"
+  },
+  "platformParameters": {
+    "instagram": {
+      "resultsLimit": 1,
+      "scrapeFollowers": false,
+      "scrapeFollowing": false
+    },
+    "x": {
+      "profilesOnly": true,
+      "maxTweets": 0
+    },
+    "tiktok": {
+      "profileOnly": true,
+      "maxPosts": 0
+    },
+    "youtube": {
+      "scrapeChannelInfoOnly": true,
+      "maxVideos": 0
+    },
+    "kwai": {
+      "profileOnly": true
+    },
+    "facebook": {
+      "scrapeProfileOnly": true,
+      "maxPosts": 0
+    },
+    "linkedin": {
+      "scrapeProfileOnly": true
+    },
+    "spotify": {
+      "scrapeArtistOnly": true
+    },
+    "twitch": {
+      "scrapeProfileOnly": true
+    },
+    "wechat": {
+      "scrapeProfileOnly": true
+    },
+    "reddit": {
+      "scrapeUserInfoOnly": true,
+      "maxPosts": 0
+    }
+  }
+}

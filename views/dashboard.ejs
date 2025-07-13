@@ -1,0 +1,145 @@
+<%- include('partials/header') %>
+
+    <body class="dashboard-layout">
+        <%- include('partials/sidebar') %>
+
+            <div class="main-content">
+                <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+
+                <div class="row">
+                    <% if (chartData && Object.keys(chartData).length> 0) { %>
+                        <% Object.entries(chartData).forEach(([userKey, config])=> { %>
+                            <div class="col-lg-12 mb-4">
+                                <div class="card monitoring-card">
+                                    <div class="card-header-top">
+                                        <button class="btn btn-detail">Detalhar</button>
+                                    </div>
+                                    <div class="user-info">
+                                        <div class="user-avatar">
+                                            <!-- Avatar do usuário (substitua por imagem real) -->
+                                            <img src="/images/default-avatar.png" alt="Avatar">
+                                        </div>
+                                        <div class="user-text">
+                                            <h4>
+                                                <%= userKey %>
+                                            </h4>
+                                            <p class="username">
+                                                @<%= userKey.toLowerCase().replace(/[^a-z0-9]/g, '' ) %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="chart-area" style="height: 300px;">
+                                        <canvas id="chart-<%= userKey.replace(/[^a-zA-Z0-9]/g, '-') %>"></canvas>
+                                    </div>
+                                    <div class="stats-section">
+                                        <!-- Você pode inserir aqui estatísticas adicionais -->
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                                <% } else { %>
+                                    <div class="col-12">
+                                        <div class="alert alert-info">
+                                            Nenhum dado de histórico encontrado para exibir gráficos. Comece a analisar
+                                            perfis para ver a evolução.
+                                        </div>
+                                    </div>
+                                    <% } %>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">Histórico de Pesquisas Recentes</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Usuário</th>
+                                        <th>Plataforma</th>
+                                        <th>Provedor</th>
+                                        <th>Data/Hora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (searchHistory && searchHistory.length> 0) { %>
+                                        <% searchHistory.slice(0, 10).forEach(entry=> { %>
+                                            <tr>
+                                                <td>@<%= entry.username %>
+                                                </td>
+                                                <td>
+                                                    <%= entry.platform %>
+                                                </td>
+                                                <td>
+                                                    <%= entry.provider %>
+                                                </td>
+                                                <td>
+                                                    <%= new Date(entry.timestamp).toLocaleString('pt-BR') %>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">
+                                                            Nenhum histórico de pesquisa encontrado.
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart.js -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    // injeta o objeto JSON sem escape
+                    const chartData = <%- JSON.stringify(chartData || {}) %>;
+
+                    Object.entries(chartData).forEach(([userKey, config]) => {
+                        const canvasId = `chart-${userKey.replace(/[^a-zA-Z0-9]/g, '-')}`;
+                        const canvas = document.getElementById(canvasId);
+                        if (!canvas) return;
+
+                        const ctx = canvas.getContext('2d');
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: config.labels,
+                                datasets: config.datasets.map(ds => ({
+                                    ...ds,
+                                    borderWidth: 2,
+                                    tension: 0.1,
+                                    fill: false
+                                }))
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { display: true, position: 'top' }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: false,
+                                        ticks: {
+                                            callback: value => value.toLocaleString('pt-BR')
+                                        }
+                                    },
+                                    x: {
+                                        ticks: {
+                                            maxRotation: 0,
+                                            autoSkip: true
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+
+            <%- include('partials/footer') %>
+    </body>

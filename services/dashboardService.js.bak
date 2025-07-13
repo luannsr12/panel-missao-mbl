@@ -1,0 +1,48 @@
+const searchHistoryService = require('./searchHistoryService');
+
+const dashboardService = {
+    async getChartData(userId, isAdmin) {
+        const history = await searchHistoryService.getSearchHistory(userId, isAdmin);
+        if (!history || history.length === 0) {
+            return {};
+        }
+
+        const chartData = {};
+
+        for (const record of history) {
+            const profileKey = `${record.username} (${record.platform})`;
+            if (!chartData[profileKey]) {
+                chartData[profileKey] = {
+                    labels: [],
+                    datasets: [{
+                        label: 'Seguidores',
+                        data: [],
+                        borderColor: '#4e73df',
+                        tension: 0.1
+                    }]
+                };
+            }
+
+            const followers = this.extractFollowers(record.raw_result);
+            if (followers !== null) {
+                chartData[profileKey].labels.push(new Date(record.timestamp).toLocaleDateString('pt-BR'));
+                chartData[profileKey].datasets[0].data.push(followers);
+            }
+        }
+
+        return chartData;
+    },
+
+    extractFollowers(rawResult) {
+        try {
+            const data = JSON.parse(rawResult);
+            // Tenta extrair de múltiplos formatos possíveis
+            return data.followersCount || data.follower_count || data.statistics?.followerCount || data.latest_posts?.[0]?.follower_count || null;
+        } catch (e) {
+            console.error("Erro ao parsear raw_result:", e);
+            return null;
+        }
+    }
+};
+
+module.exports = dashboardService;

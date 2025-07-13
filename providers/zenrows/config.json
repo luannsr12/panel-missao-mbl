@@ -1,0 +1,10 @@
+{
+  "name": "zenrows",
+  "automationType": "api",
+  "baseUrl": "https://api.zenrows.com/v1/",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": [],
+  "jsonKeysForImageUrls": ["profilePicUrl"],
+  "apiKeyEnvVar": "ZENROWS_API_KEY"
+}

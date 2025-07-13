@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+    <body class="dashboard-layout">
+        <%- include('partials/sidebar') %>
+            <div class="main-content">
+
+                <h1 class="h3 mb-4 text-gray-800">Configurações</h1>
+
+                <div class="form-card mb-4">
+                    <h3 class="mb-4">Alterar Senha</h3>
+                    <form action="/settings/password" method="POST">
+                        <div class="form-group mb-3">
+                            <label for="newPassword" class="form-label">Nova Senha</label>
+                            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Atualizar Senha</button>
+                    </form>
+                </div>
+
+                <% if (locals.isAdmin) { %>
+                    <div class="form-card">
+                        <h3 class="mb-4">Configuração do Scraper</h3>
+                        <form action="/settings/headless" method="POST">
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="headless" name="headless"
+                                    <%=headless ? 'checked' : '' %>>
+                                <label class="form-check-label" for="headless">Executar Scraper em modo Headless (sem
+                                    interface gráfica)</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar Configuração</button>
+                        </form>
+                    </div>
+                    <% } %>
+            </div>
+
+            <%- include('partials/footer') %>

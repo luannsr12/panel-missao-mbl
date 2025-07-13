@@ -1,0 +1,39 @@
+{
+  "name": "instagram-panel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "live": "nodemon server.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "apify-client": "^2.12.6",
+    "axios": "^1.7.2",
+    "bcrypt": "^6.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-jwt": "^8.5.1",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.2",
+    "playwright": "^1.54.0",
+    "playwright-extra-plugin-stealth": "^0.0.1",
+    "playwright-stealth": "^0.0.1",
+    "request": "^2.88.2",
+    "request-progress": "^3.0.0",
+    "toastr": "^2.1.4"
+  },
+  "devDependencies": {
+    "jest": "^30.0.4",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.3"
+  }
+}

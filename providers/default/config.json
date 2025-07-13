@@ -1,0 +1,9 @@
+{
+  "name": "default",
+  "automationType": "playwright",
+  "baseUrl": "",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": ["legacy", "followerCount", "web_profile_info", "biography", "followers", "following", "biography_with_entities", "is_blue_verified", "statuses_count"],
+  "jsonKeysForImageUrls": ["avatar.image_url", "legacy.profile_banner_url", "avatarLarger", "hd_profile_pic_url_info", "profile_pic_url", "profile_pic_url_hd", "display_url", "thumbnail_src"]
+}

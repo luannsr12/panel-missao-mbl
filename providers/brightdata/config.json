@@ -1,0 +1,10 @@
+{
+  "name": "brightdata",
+  "automationType": "playwright",
+  "baseUrl": "",
+  "exitOnCompletion": true,
+  "runInBackground": true,
+  "jsonKeywordsForProfileData": [],
+  "jsonKeysForImageUrls": ["profilePicUrl"],
+  "browserWSEndpointEnvVar": "BRIGHTDATA_BROWSER_WSS"
+}
